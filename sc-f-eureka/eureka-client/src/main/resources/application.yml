@@ -1,0 +1,18 @@
+# eureka是一个高可用的组件，它没有后端缓存，每一个实例注册之后需要向注册中心发送心跳（因此可以在内存中完成）
+# 当client向server注册时，它会提供一些元数据，例如主机和端口，URL，主页等。Eureka server 从每个client实例接收心跳消息。
+# 如果心跳超时，则通常将该实例从注册server中删除
+# 配置文件中注明自己的服务注册中心的地址
+server:
+  port: 8762
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/ #指向服务注册中心的地址
+
+
+spring:
+  application:
+    name: eureka-client
+    #需要指明spring.application.name,这个很重要，这在以后的服务与服务之间相互调用一般都是根据这个name
