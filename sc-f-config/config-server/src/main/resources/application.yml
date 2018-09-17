@@ -12,6 +12,12 @@ spring:
           search-paths: respo # 配置仓库路径
           username:        # 访问git仓库的用户名
           password:        # 访问git仓库的密码
-      label: master        # 配置仓库的分支
+      label: master     # 配置仓库的分支
 
 #如果Git仓库为公开仓库，可以不填写用户名和密码，如果是私有仓库需要填写，本例子是公开仓库，放心使用
+
+# 指定服务注册地址为http://localhost:8889/eureka/
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8889/eureka/

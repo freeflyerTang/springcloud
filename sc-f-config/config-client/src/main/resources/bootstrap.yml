@@ -6,6 +6,33 @@ spring:
       profile: dev
       label: master
       uri: http://localhost:8888/
+      discovery:
+        enabled: true #从配置中心读取文件。
+        service-id: config-server #配置中心的servieId，即服务名
+      bus: # 并需要加上spring.cloud.bus的三个配置
+        enabled: true
+        trace:
+          enabled: true
+  rabbitmq: # 添加RabbitMq的配置，包括RabbitMq的地址、端口，用户名、密码。
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
+
+
 
 server:
-  port: 8881
+  port: 8882
+
+# 注册到服务中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8889/eureka/
+
